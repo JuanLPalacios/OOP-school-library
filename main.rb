@@ -16,11 +16,21 @@ def list_all_people
 end
 
 def create_a_person
+  print 'Do you want to create a student (1) or a techer (2) [Input the number]:'
   is_teacher = gets.to_i == 1
-  name = gets.chomp
+  print 'Age: '
   age = gets.to_i
-  aditional = gets.chomp
+  print 'Name: '
+  name = gets.chomp
+  if is_teacher
+    print 'Specialization: '
+    aditional = gets.chomp
+  else
+    print 'Has parent permission? [Y/N]: '
+    aditional = gets.chomp.lowcase == 'y'
+  end
   APP.create_a_person(is_teacher, name, age, aditional)
+  puts 'Person created successfully!'
 end
 
 def create_a_book
