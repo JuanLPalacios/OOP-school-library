@@ -1,5 +1,7 @@
 class App
-  def list_all_books; end
+  def list_all_books
+    @books
+  end
 
   def list_all_people; end
 
@@ -10,4 +12,8 @@ class App
   def create_a_rental(book, person, date); end
 
   def list_all_rentals_for_person_id(id); end
+
+  def initialize
+    @books = []
+  end
 end
