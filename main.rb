@@ -17,7 +17,7 @@ end
 
 def create_a_person
   print 'Do you want to create a student (1) or a techer (2) [Input the number]:'
-  is_teacher = gets.to_i == 1
+  is_teacher = gets.to_i == 2
   print 'Age: '
   age = gets.to_i
   print 'Name: '
@@ -27,7 +27,7 @@ def create_a_person
     aditional = gets.chomp
   else
     print 'Has parent permission? [Y/N]: '
-    aditional = gets.chomp.lowcase == 'y'
+    aditional = gets.chomp.downcase == 'y'
   end
   APP.create_a_person(is_teacher, name, age, aditional)
   puts 'Person created successfully!'
@@ -43,10 +43,27 @@ def create_a_book
 end
 
 def create_a_rental
-  book = APP.list_all_books[gets.to_i]
-  person = APP.list_all_people[gets.to_i]
+  return puts 'No books for rental!' if APP.list_all_books.length.zero?
+  return puts 'No people to rent them!' if APP.list_all_people.length.zero?
+
+  book = nil
+  while book.nil?
+    puts 'Select a book from the following list by number'
+    APP.list_all_books.each_with_index { |item, i| puts "#{i}) Title: \"#{item.title}\", Author: #{item.author}" }
+    book = APP.list_all_books[gets.to_i]
+  end
+  person = nil
+  while person.nil?
+    puts 'Select a person from the following list by number (not id)'
+    APP.list_all_people.each_with_index do |item, i|
+      puts "#{i}) [#{item.class.name}] Name: #{item.name}, ID: #{item.id}, Age: #{item.age}"
+    end
+    person = APP.list_all_people[gets.to_i]
+  end
+  print 'Date: '
   date = gets.chomp
-  APP.create_a_rental(book, person, date)
+  APP.create_a_rental(person, book, date)
+  puts 'Rental created successfully'
 end
 
 def list_all_rentals_for_person_id
@@ -86,11 +103,10 @@ def main
     when 6
       list_all_rentals_for_person_id
     when 7
-      break
+      return puts 'Thank you for using this app!'
     end
   end
 end
 # rubocop:enable Metrics/CyclomaticComplexity
 
 main
-puts 'Thank you for using this app!'

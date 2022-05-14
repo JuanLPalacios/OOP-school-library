@@ -1,3 +1,8 @@
+require './teacher'
+require './student'
+require './book'
+require './rental'
+
 class App
   def list_all_books
     @books
@@ -17,7 +22,9 @@ class App
     @books.push(Book.new(title, author))
   end
 
-  def create_a_rental(book, person, date); end
+  def create_a_rental(person, book, date)
+    Rental.new(person, book, date)
+  end
 
   def list_all_rentals_for_person_id(id); end
 
