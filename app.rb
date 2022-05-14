@@ -26,7 +26,12 @@ class App
     Rental.new(person, book, date)
   end
 
-  def list_all_rentals_for_person_id(id); end
+  def list_all_rentals_for_person_id(id)
+    person = @people.find { |item| item.id == id }
+    return person.rentals unless person.nil?
+
+    []
+  end
 
   def initialize
     @books = []

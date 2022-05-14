@@ -67,8 +67,11 @@ def create_a_rental
 end
 
 def list_all_rentals_for_person_id
+  print 'ID of a person '
   id = gets.to_i
-  APP.list_all_rentals_for_person_id(id)
+  APP.list_all_rentals_for_person_id(id).each do |rental|
+    puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
+  end
 end
 
 def main_menu
