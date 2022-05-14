@@ -7,7 +7,12 @@ def list_all_books
 end
 
 def list_all_people
-  APP.list_all_people
+  APP.list_all_people.each do |person|
+    print "[#{person.class.name}] "
+    print "Name: #{person.name}, "
+    print "ID: #{person.id}, "
+    puts "Age: #{person.age}"
+  end
 end
 
 def create_a_person
@@ -36,7 +41,8 @@ def list_all_rentals_for_person_id
   APP.list_all_rentals_for_person_id(id)
 end
 
-def print_main_menu
+def main_menu
+  puts
   puts 'Please, choose an option by entering a number:'
   puts '1 - List all books'
   puts '2 - List all people'
@@ -45,14 +51,14 @@ def print_main_menu
   puts '5 - Create a rental'
   puts '6 - List all rentals for a given person id'
   puts '7 - Exit'
+  gets.to_i
 end
 
 # rubocop:disable Metrics/CyclomaticComplexity
 def main
-  puts "Welcome to School Library App!\n"
+  puts 'Welcome to School Library App!'
   loop do
-    print_main_menu
-    option = gets.to_i
+    option = main_menu
     case option
     when 1
       list_all_books

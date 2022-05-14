@@ -3,7 +3,9 @@ class App
     @books
   end
 
-  def list_all_people; end
+  def list_all_people
+    @people
+  end
 
   def create_a_person(is_teacher, name, age, aditional); end
 
@@ -15,5 +17,6 @@ class App
 
   def initialize
     @books = []
+    @people = []
   end
 end
