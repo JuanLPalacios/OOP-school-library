@@ -17,8 +17,9 @@ To get a local copy follow these simple example steps.
 
 2.- Change the directory to the enumerables directory  
 `cd OOP-school-library`  
-3.- Install the project's dependencies by running this command:   
-`bundle install`  
+
+3.- to run test script run this command:   
+`ruby main.rb`  
 
 
 ## Authors
