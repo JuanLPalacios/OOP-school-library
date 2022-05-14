@@ -34,9 +34,12 @@ def create_a_person
 end
 
 def create_a_book
+  print 'Title: '
   title = gets.chomp
+  print 'Author: '
   author = gets.chomp
   APP.create_a_book(title, author)
+  puts 'Book created successfully'
 end
 
 def create_a_rental

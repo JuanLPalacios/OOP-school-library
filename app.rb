@@ -13,7 +13,9 @@ class App
     )
   end
 
-  def create_a_book(title, author); end
+  def create_a_book(title, author)
+    @books.push(Book.new(title, author))
+  end
 
   def create_a_rental(book, person, date); end
 
