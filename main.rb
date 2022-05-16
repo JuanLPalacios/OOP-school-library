@@ -7,7 +7,7 @@ APP = App.new(
   books_controller: BooksController.new,
   people_controller: PeopleController.new,
   rental_controller: RentalController.new
-  )
+)
 
 # rubocop:disable Metrics/CyclomaticComplexity
 def main
