@@ -5,7 +5,16 @@ require './rental'
 
 class App
   def list_all_books
-    @controller.list_all_books.each { |book| puts "Title: \"#{book.title}\", Author: #{book.author}" }
+    @books_controller.list_all_books.each { |book| puts "Title: \"#{book.title}\", Author: #{book.author}" }
+  end
+
+  def create_a_book
+    print 'Title: '
+    title = gets.chomp
+    print 'Author: '
+    author = gets.chomp
+    @books_controller.create_a_book(title, author)
+    puts 'Book created successfully'
   end
 
   def list_all_people
@@ -35,17 +44,8 @@ class App
     puts 'Person created successfully!'
   end
 
-  def create_a_book
-    print 'Title: '
-    title = gets.chomp
-    print 'Author: '
-    author = gets.chomp
-    @controller.create_a_book(title, author)
-    puts 'Book created successfully'
-  end
-
   def create_a_rental
-    return puts 'No books for rental!' if @controller.list_all_books.length.zero?
+    return puts 'No books for rental!' if @books_controller.list_all_books.length.zero?
     return puts 'No people to rent them!' if @people_controller.list_all_people.length.zero?
 
     book = pick_a_book
@@ -53,7 +53,7 @@ class App
 
     print 'Date: '
     date = gets.chomp
-    @controller.create_a_rental(person, book, date)
+    @rental_controller.create_a_rental(person, book, date)
     puts 'Rental created successfully'
   end
 
@@ -73,10 +73,10 @@ class App
     book = nil
     while book.nil?
       puts 'Select a book from the following list by number'
-      @controller.list_all_books.each_with_index do |item, i|
+      @books_controller.list_all_books.each_with_index do |item, i|
         puts "#{i}) Title: \"#{item.title}\", Author: #{item.author}"
       end
-      book = @controller.list_all_books[gets.to_i]
+      book = @books_controller.list_all_books[gets.to_i]
     end
     book
   end
@@ -84,7 +84,7 @@ class App
   def list_all_rentals_for_person_id
     print 'ID of a person '
     id = gets.to_i
-    @controller.list_all_rentals_for_person_id(id).each do |rental|
+    @rental_controller.list_all_rentals_for_person_id(id).each do |rental|
       puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
     end
   end
@@ -102,8 +102,9 @@ class App
     gets.to_i
   end
 
-  def initialize(controller:, people_controller:)
-    @controller = controller
+  def initialize(books_controller:, people_controller:, rental_controller:)
+    @books_controller = books_controller
     @people_controller = people_controller
+    @rental_controller = rental_controller
   end
 end
