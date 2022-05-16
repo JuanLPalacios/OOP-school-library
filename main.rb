@@ -1,7 +1,8 @@
 require './app'
 require './controller'
+require './people_controller'
 
-APP = App.new(controller: Controller.new)
+APP = App.new(controller: Controller.new, people_controller: PeopleController.new)
 
 # rubocop:disable Metrics/CyclomaticComplexity
 def main
