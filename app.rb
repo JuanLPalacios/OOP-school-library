@@ -105,6 +105,7 @@ class App
   def save
     @books_controller.save
     @people_controller.save
+    @rental_controller.save(@people_controller.list_all_people)
   end
 
   def initialize(books_controller:, people_controller:, rental_controller:)
