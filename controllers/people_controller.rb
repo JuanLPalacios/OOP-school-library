@@ -11,7 +11,7 @@ class PeopleController
     )
   end
 
-  def save(filename = './people.json')
+  def save(filename = './data/people.json')
     arr_people = @people.map do |person|
       special = person.is_a?(Teacher) ? person.specialization : nil
       classroom = person.is_a?(Student) ? person.classroom : nil

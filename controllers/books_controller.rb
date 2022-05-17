@@ -13,7 +13,7 @@ class BooksController
     @books = []
   end
 
-  def save(filename = './book.json')
+  def save(filename = './data/book.json')
     File.write(filename, @books.to_json)
   end
 end
