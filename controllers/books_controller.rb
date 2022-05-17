@@ -1,3 +1,5 @@
+require 'json'
+
 class BooksController
   def list_all_books
     @books
@@ -9,5 +11,9 @@ class BooksController
 
   def initialize
     @books = []
+  end
+
+  def save(filename = './book.json')
+    File.write(filename, @books.to_json)
   end
 end

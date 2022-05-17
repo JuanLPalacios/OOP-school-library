@@ -102,6 +102,10 @@ class App
     gets.to_i
   end
 
+  def save
+    @books_controller.save
+  end
+
   def initialize(books_controller:, people_controller:, rental_controller:)
     @books_controller = books_controller
     @people_controller = people_controller
