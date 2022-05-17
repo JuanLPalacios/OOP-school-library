@@ -84,7 +84,8 @@ class App
   def list_all_rentals_for_person_id
     print 'ID of a person '
     id = gets.to_i
-    @rental_controller.list_all_rentals_for_person_id(id).each do |rental|
+    person = @people_controller.list_all_people.find { |p| p.id == id }
+    @rental_controller.list_all_rentals_for_person(person).each do |rental|
       puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.book.author}"
     end
   end
@@ -110,6 +111,7 @@ class App
 
   def load
     @people_controller.load
+    @rental_controller.load(@people_controller.list_all_people, @books_controller.list_all_books)
   end
 
   def initialize(books_controller:, people_controller:, rental_controller:)
