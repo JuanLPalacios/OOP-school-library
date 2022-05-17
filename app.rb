@@ -111,6 +111,7 @@ class App
 
   def load
     @people_controller.load
+    @books_controller.load
     @rental_controller.load(@people_controller.list_all_people, @books_controller.list_all_books)
   end
 
