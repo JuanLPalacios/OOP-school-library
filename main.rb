@@ -1,7 +1,7 @@
 require './app'
-require './books_controller'
-require './people_controller'
-require './rental_controller'
+require './controllers/books_controller'
+require './controllers/people_controller'
+require './controllers/rental_controller'
 
 APP = App.new(
   books_controller: BooksController.new,

@@ -1,7 +1,7 @@
-require './teacher'
-require './student'
-require './book'
-require './rental'
+require './models/teacher'
+require './models/student'
+require './models/book'
+require './models/rental'
 
 class App
   def list_all_books
