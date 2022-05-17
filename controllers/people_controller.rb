@@ -27,6 +27,33 @@ class PeopleController
     File.write(filename, arr_people.to_json)
   end
 
+  def mapping(person)
+    if person['specialization'].nil?
+      return Student.new(
+        person['age'],
+        person['classroom'],
+        person['name'],
+        parent_permission: person['parent_permission'],
+        id: person['id']
+      )
+    end
+    Teacher.new(
+      person['age'],
+      person['specialization'],
+      person['name'],
+      parent_permission: person['parent_permission'],
+      id: person['id']
+    )
+  end
+
+  def load(filename = './data/people.json')
+    return false unless File.exist?(filename)
+
+    arr = JSON.parse(File.read(filename))
+    @people = arr.map { |person| mapping(person) }
+    true
+  end
+
   def initialize
     @people = []
   end

@@ -108,6 +108,10 @@ class App
     @rental_controller.save(@people_controller.list_all_people)
   end
 
+  def load
+    @people_controller.load
+  end
+
   def initialize(books_controller:, people_controller:, rental_controller:)
     @books_controller = books_controller
     @people_controller = people_controller

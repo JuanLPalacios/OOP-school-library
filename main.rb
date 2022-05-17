@@ -19,6 +19,7 @@ OPTIONS = [
 ].freeze
 
 def main
+  APP.load
   puts 'Welcome to School Library App!'
   loop do
     option = APP.main_menu
