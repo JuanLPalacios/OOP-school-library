@@ -1,7 +1,7 @@
 require './app'
-require './books_controller'
-require './people_controller'
-require './rental_controller'
+require './controllers/books_controller'
+require './controllers/people_controller'
+require './controllers/rental_controller'
 
 APP = App.new(
   books_controller: BooksController.new,
@@ -9,29 +9,27 @@ APP = App.new(
   rental_controller: RentalController.new
 )
 
-# rubocop:disable Metrics/CyclomaticComplexity
+OPTIONS = [
+  -> { APP.list_all_books },
+  -> { APP.list_all_people },
+  -> { APP.create_a_person },
+  -> { APP.create_a_book },
+  -> { APP.create_a_rental },
+  -> { APP.list_all_rentals_for_person_id }
+].freeze
+
 def main
+  APP.load
   puts 'Welcome to School Library App!'
   loop do
     option = APP.main_menu
     case option
-    when 1
-      APP.list_all_books
-    when 2
-      APP.list_all_people
-    when 3
-      APP.create_a_person
-    when 4
-      APP.create_a_book
-    when 5
-      APP.create_a_rental
-    when 6
-      APP.list_all_rentals_for_person_id
+    when 1..6
+      OPTIONS[option - 1].call
     when 7
+      APP.save
       return puts 'Thank you for using this app!'
     end
   end
 end
-# rubocop:enable Metrics/CyclomaticComplexity
-
 main
