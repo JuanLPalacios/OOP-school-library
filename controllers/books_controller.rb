@@ -14,7 +14,7 @@ class BooksController
   end
 
   def save(filename = './data/book.json')
-    File.write(filename, @books.to_json)
+    File.write(filename, (@books.map { |book| { title: book.title, author: book.author } }).to_json)
   end
 
   def load(filename = './data/book.json')
