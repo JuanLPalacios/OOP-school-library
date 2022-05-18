@@ -36,7 +36,7 @@ describe Book do
   context 'given a book, a person and a date' do
     it 'Should be posible to ad a rental to the rentals property' do
       book = Book.new('Logicomix: an epic serch for truth', 'Apotolos doxiadis')
-      person = person.new(32)
+      person = Person.new(32)
       date = '2022/01/01'
 
       book.add_rental(person, date)
