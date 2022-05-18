@@ -27,7 +27,7 @@ describe Student do
 
       student = Student.new(age, classroom)
 
-      expect(student.calssroom).to be classroom
+      expect(student.classroom).to be classroom
     end
 
     it 'Should create a Student and add it self to calssroom\'s students' do

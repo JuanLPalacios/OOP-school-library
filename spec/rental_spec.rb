@@ -1,6 +1,6 @@
-requires './models/rental'
-requires './models/person'
-requires './models/book'
+require './models/rental'
+require './models/person'
+require './models/book'
 
 describe Rental do
   context 'Given a person, book and date' do
