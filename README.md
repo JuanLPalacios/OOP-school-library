@@ -18,8 +18,18 @@ To get a local copy follow these simple example steps.
 2.- Change the directory to the enumerables directory  
 `cd OOP-school-library`  
 
-3.- to run test script run this command:   
+3.- to run the app run this command:   
 `ruby main.rb`  
+
+## Unit Tests (Rspec)
+
+To run the unit tests follow these steps.  
+
+1.- In the terminal run this command:  
+`rspec`
+
+2.- For test with description run this command:  
+`rspec --format documentation`
 
 
 ## Authors
